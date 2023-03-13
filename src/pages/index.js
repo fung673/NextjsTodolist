@@ -6,11 +6,13 @@ function Home() {
   const [newTodos, setNewTodos] = useState("");
 
   function handleAdd() {
-    if (setNewTodos === "") {
-      return
+    if (newTodos === "") {
+      return -1
     }
-    setTodos((prev) => [...prev, { name: newTodos, done: false }]);
-    setNewTodos("");
+    else {
+      setTodos((prev) => [...prev, { name: newTodos, done: false }]);
+      setNewTodos("");
+    }
   }
 
   function handleChange(event) {
