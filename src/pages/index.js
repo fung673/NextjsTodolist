@@ -31,10 +31,8 @@ function Home() {
     });
     setTodos(newToggle);
   };
+  const totalRemain = todos.filter(a => !a.done).length
 
-  const totalRemaining = todos.filter((item) => {
-    return item.done === false;
-  }).length;
 
   console.log(todos)
   return (
@@ -45,12 +43,12 @@ function Home() {
       </div>
       <div className={styles.body}>
         <ul className={styles.todolist}>{todos.map((item, i) => {
-          return (<Todo todo={item} onClick={(e) => toggleDone(e, i)}></Todo>
+          return (<Todo todo={item} onClick={(e) => toggleDone(e, i)} todos={todos} setTodos={setTodos}></Todo>
           );
         })}</ul>
         <div><input onChange={handleChange} value={newTodos} />
           <button onClick={handleAdd}>add</button></div>
-        <div>Total Remaining:{totalRemaining}</div>
+        <div>{totalRemain === 0 ? `All Task Done` : `Total Remaining:` + ' ' + totalRemain}</div>
       </div>
     </div>
   );
