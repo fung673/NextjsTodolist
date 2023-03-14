@@ -1,0 +1,10 @@
+.todolist {
+ min-width: 95%;
+ display: flex;
+ justify-content: space-between;
+ border-bottom: 1px solid black;
+}
+
+.checkbox {
+ transform: scale(1.3)
+}

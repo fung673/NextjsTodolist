@@ -1,5 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Todo from "@/todo";
+import Head from "next/head";
+import styles from '../styles/index.module.css'
 
 function Home() {
   const [todos, setTodos] = useState([{ name: "Default", done: true }]);
@@ -35,25 +38,20 @@ function Home() {
 
   console.log(todos)
   return (
-
     <div>
-      {todos.map((item, i) => {
-        return (
-          <div>
-            {item.name}
-            <input
-              type="checkbox"
-              checked={item.done ? "checked" : ""}
-              onClick={(e) => {
-                toggleDone(e, i);
-              }}
-            ></input>
-          </div>
-        );
-      })}
-      <input onChange={handleChange} value={newTodos} />
-      <button onClick={handleAdd}>add</button>
-      <div>Total Remaining:{totalRemaining}</div>
+      <Head><title>TodoList</title></Head>
+      <div className={styles.topBar}>
+        <p className={styles.topic}>What you gonna do today?🚀</p>
+      </div>
+      <div className={styles.body}>
+        <ul className={styles.todolist}>{todos.map((item, i) => {
+          return (<Todo todo={item} onClick={(e) => toggleDone(e, i)}></Todo>
+          );
+        })}</ul>
+        <div><input onChange={handleChange} value={newTodos} />
+          <button onClick={handleAdd}>add</button></div>
+        <div>Total Remaining:{totalRemaining}</div>
+      </div>
     </div>
   );
 }
