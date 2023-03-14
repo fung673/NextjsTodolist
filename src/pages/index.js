@@ -18,6 +18,18 @@ function Home() {
     }
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      if (newTodos === "") {
+        return -1
+      }
+      else {
+        setTodos((prev) => [...prev, { name: newTodos, done: false }]);
+        setNewTodos("");
+      }
+    }
+  }
+
   function handleChange(event) {
     setNewTodos(event.target.value);
   }
@@ -46,7 +58,7 @@ function Home() {
           return (<Todo todo={item} onClick={(e) => toggleDone(e, i)} todos={todos} setTodos={setTodos}></Todo>
           );
         })}</ul>
-        <div className={styles.textbar}><input onChange={handleChange} value={newTodos} className={styles.input} />
+        <div className={styles.textbar}><input onChange={handleChange} value={newTodos} className={styles.input} onKeyDown={handleKeyPress} />
           <button onClick={handleAdd} className={styles.add}>Add</button></div>
         <div>{totalRemain === 0 ? `All Task Done` : `Total Remaining:` + ' ' + totalRemain}</div>
       </div>
