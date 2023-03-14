@@ -46,8 +46,8 @@ function Home() {
           return (<Todo todo={item} onClick={(e) => toggleDone(e, i)} todos={todos} setTodos={setTodos}></Todo>
           );
         })}</ul>
-        <div><input onChange={handleChange} value={newTodos} />
-          <button onClick={handleAdd}>add</button></div>
+        <div className={styles.textbar}><input onChange={handleChange} value={newTodos} className={styles.input} />
+          <button onClick={handleAdd} className={styles.add}>Add</button></div>
         <div>{totalRemain === 0 ? `All Task Done` : `Total Remaining:` + ' ' + totalRemain}</div>
       </div>
     </div>
